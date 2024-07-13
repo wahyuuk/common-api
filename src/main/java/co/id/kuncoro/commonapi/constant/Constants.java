@@ -11,5 +11,6 @@ public class Constants {
   public static final String COMMA = ",";
   public static final String PERCENT_STR = "%";
   public static final String KEY_SPARATOR = ":";
+  public static final String LINE_SPARATOR = System.lineSeparator();
 
 }

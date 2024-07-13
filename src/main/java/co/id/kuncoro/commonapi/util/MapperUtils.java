@@ -41,6 +41,19 @@ public class MapperUtils {
     return readValue(content, valueType, null);
   }
 
+  public <T> T readValue(byte[] content, Class<T> valueType) {
+    return readValue(content, valueType, null);
+  }
+
+  public <T> T readValue(byte[] content, Class<T> valueType, T defaultValue) {
+    try {
+      objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+      return objectMapper.readValue(content, valueType);
+    } catch (IOException e) {
+      return defaultValue;
+    }
+  }
+
   public <T> T readValue(String content, Class<T> valueType) {
     return readValue(content, valueType, null);
   }

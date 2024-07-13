@@ -23,7 +23,7 @@ public class ResponseData<T> {
 
   @Default
   private String code = SUCCESS.getCode();
-  private String activityRefCode;
+  private String traceId;
   private String message;
   private T results;
   
@@ -33,7 +33,7 @@ public class ResponseData<T> {
   
   public static <T> ResponseData<T> ok(T results, TracerUtils tracerUtils) {
     var response = new ResponseData<>(results);
-    response.setActivityRefCode(tracerUtils.getTraceId());
+    response.setTraceId(tracerUtils.getTraceId());
     return response;
   }
 

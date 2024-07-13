@@ -1,0 +1,21 @@
+spring:
+  config:
+    import: "env.properties"
+    activate:
+      on-profile: local
+  application:
+    name: '@project.artifactId@'
+  datasource:
+    url: "jdbc:postgresql://${postgres.hostname}:${postgres.port}/${postgres.db}"
+    username: ${postgres.username}
+    password: ${postgres.password}
+  flyway:
+    locations: "classpath:db/migration/{vendor}"
+    url: "jdbc:postgresql://${postgres.hostname}:${postgres.port}/${postgres.db}"
+    user: ${postgres.username}
+    password: ${postgres.password}
+    
+logging:
+  level:
+    root: INFO
+    '[co.id.kuncoro]': DEBUG

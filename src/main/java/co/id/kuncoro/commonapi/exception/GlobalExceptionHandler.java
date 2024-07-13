@@ -12,12 +12,12 @@ import co.id.kuncoro.commonapi.util.CacheUtils;
 import co.id.kuncoro.commonapi.util.LanguageUtils;
 import co.id.kuncoro.commonapi.util.TracerUtils;
 import co.id.kuncoro.commonapi.util.ValidationUtils;
-import io.netty.handler.timeout.TimeoutException;
 import jakarta.servlet.http.HttpServletRequest;
 import java.net.ConnectException;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.concurrent.TimeoutException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpHeaders;
@@ -105,7 +105,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
   private ErrorResponseDto<Object> constructErrorResponseDto(ErrorCodeResponseDto error, Locale locale,
       List<ErrorValidationDto> errors) {
     return ErrorResponseDto.builder()
-        .activityRefCode(tracerUtils.getTraceId())
+        .traceId(tracerUtils.getTraceId())
         .sourceSystem(error.getSourceSystem())
         .code(error.getCode())
         .title(error.getTitle(locale))
